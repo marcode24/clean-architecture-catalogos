@@ -1,3 +1,4 @@
+using System.Diagnostics.Contracts;
 using Catalogo.Domain.Abstractions;
 using Catalogo.Domain.Products.Events;
 
@@ -9,18 +10,21 @@ public sealed class Product : Entity
   public decimal Price { get; set; }
   public string? Description { get; set; }
   public string? ImageUrl { get; set; }
+  public string? Code { get; set; }
   private Product(
     Guid id,
     string name,
     decimal price,
     string description,
-    string imageUrl
+    string imageUrl,
+    string code
     ) : base(id)
   {
     Name = name;
     Price = price;
     Description = description;
     ImageUrl = imageUrl;
+    Code = code;
   }
 
   public static Product Create(
