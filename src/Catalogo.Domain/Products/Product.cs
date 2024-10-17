@@ -31,7 +31,8 @@ public sealed class Product : Entity
     string name,
     decimal price,
     string description,
-    string imageUrl
+    string imageUrl,
+    string code
     )
   {
     var product = new Product(
@@ -39,7 +40,8 @@ public sealed class Product : Entity
       name,
       price,
       description,
-      imageUrl
+      imageUrl,
+      code
     );
     var productDomainEvent = new ProductCreatedDomainEvent(product.Id);
     product.RaiseDomainEvent(productDomainEvent);
