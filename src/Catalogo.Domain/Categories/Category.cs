@@ -6,6 +6,8 @@ namespace Catalogo.Domain.Categories;
 public sealed class Category : Entity
 {
   public string? Name { get; private set; }
+
+  private Category() { }
   private Category(Guid id, string name) : base(id)
   {
     Name = name;
