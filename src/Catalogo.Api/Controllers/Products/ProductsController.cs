@@ -15,7 +15,7 @@ public class ProductController : ControllerBase
     _sender = sender;
   }
 
-  [HttpGet("code")]
+  [HttpGet("code/{value}")]
   public async Task<IActionResult> GetByCode(string value)
   {
     var query = new SearchProductQuery { Code = value };
