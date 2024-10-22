@@ -1,3 +1,4 @@
+using Catalogo.Domain.Abstractions;
 using Catalogo.Domain.Products;
 using Catalogo.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +25,10 @@ public static class DependencyInjection
         configuration.GetConnectionString("SqliteProduct")
       ).UseSnakeCaseNamingConvention();
     });
+
+    services.AddScoped<IUnitOfWork>(
+      sp => sp.GetRequiredService<CatalogoDbContext>()
+    );
 
     services.AddScoped<IProductRepository, ProductRepository>();
 
