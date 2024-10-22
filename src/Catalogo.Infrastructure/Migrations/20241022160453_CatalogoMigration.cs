@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Catalogo.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCatalogProduct : Migration
+    public partial class CatalogoMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,41 +15,41 @@ namespace Catalogo.Infrastructure.Migrations
                 name: "categories",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", nullable: true)
+                    id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    name = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_categories", x => x.Id);
+                    table.PrimaryKey("pk_categories", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "products",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", nullable: true),
-                    Price = table.Column<decimal>(type: "TEXT", nullable: false),
-                    Description = table.Column<string>(type: "TEXT", nullable: true),
-                    ImageUrl = table.Column<string>(type: "TEXT", nullable: true),
-                    Code = table.Column<string>(type: "TEXT", nullable: true),
-                    CategoryId = table.Column<Guid>(type: "TEXT", nullable: false)
+                    id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    name = table.Column<string>(type: "TEXT", nullable: true),
+                    price = table.Column<decimal>(type: "TEXT", nullable: false),
+                    description = table.Column<string>(type: "TEXT", nullable: true),
+                    image_url = table.Column<string>(type: "TEXT", nullable: true),
+                    code = table.Column<string>(type: "TEXT", nullable: true),
+                    category_id = table.Column<Guid>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_products", x => x.Id);
+                    table.PrimaryKey("pk_products", x => x.id);
                     table.ForeignKey(
-                        name: "FK_products_categories_CategoryId",
-                        column: x => x.CategoryId,
+                        name: "fk_products_categories_category_id",
+                        column: x => x.category_id,
                         principalTable: "categories",
-                        principalColumn: "Id",
+                        principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_products_CategoryId",
+                name: "ix_products_category_id",
                 table: "products",
-                column: "CategoryId");
+                column: "category_id");
         }
 
         /// <inheritdoc />
