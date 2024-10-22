@@ -5,11 +5,12 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
+
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen(c =>
 {
@@ -29,6 +30,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.ApplyMigration();
+
+await app.SeedCatalogoProduct();
 
 app.MapControllers();
 
