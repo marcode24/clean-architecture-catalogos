@@ -35,4 +35,8 @@ await app.SeedCatalogoProduct();
 
 app.MapControllers();
 
+// use default files and static files
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
 app.Run();

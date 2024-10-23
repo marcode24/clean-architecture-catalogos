@@ -20,6 +20,6 @@ internal sealed class SearchProductQueryHandler
   {
     var product = await _productRepository.GetByCode(request.Code!, cancellationToken);
 
-    return product!.ToDto();
+    return product!.ToDto(request.HttpContext!);
   }
 }

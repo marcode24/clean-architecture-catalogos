@@ -19,6 +19,6 @@ internal sealed class AllProductQueryHandler
     CancellationToken cancellationToken)
   {
     var products = await _productRepository.GetAll(cancellationToken);
-    return products.ConvertAll(product => product.ToDto());
+    return products.ConvertAll(product => product.ToDto(request.HttpContext!));
   }
 }
