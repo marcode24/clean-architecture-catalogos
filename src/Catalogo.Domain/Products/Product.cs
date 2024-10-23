@@ -1,4 +1,5 @@
 using System.Diagnostics.Contracts;
+using System.Text.RegularExpressions;
 using Catalogo.Domain.Abstractions;
 using Catalogo.Domain.Products.Events;
 
@@ -40,8 +41,16 @@ public sealed class Product : Entity
     Guid categoryId
     )
   {
+    var id = Guid.NewGuid();
+
+    if (string.IsNullOrEmpty(code))
+      code = Regex.Replace(
+        Convert.ToBase64String(id.ToByteArray()),
+        "[/+=]", ""
+      );
+
     var product = new Product(
-      Guid.NewGuid(),
+      id,
       name,
       price,
       description,
@@ -49,6 +58,7 @@ public sealed class Product : Entity
       code,
       categoryId
     );
+
     var productDomainEvent = new ProductCreatedDomainEvent(product.Id);
     product.RaiseDomainEvent(productDomainEvent);
     return product;
