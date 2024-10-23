@@ -4,3 +4,8 @@ GET {{ Catalogo.Api_HostAddress }}/api/products/code/QByIkL3
 Accept: application/json
 
 ###
+
+GET {{ Catalogo.Api_HostAddress }}/api/products
+Accept: application/json
+
+###

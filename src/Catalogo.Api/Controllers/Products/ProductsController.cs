@@ -1,3 +1,4 @@
+using Catalogo.Application.Products.AllProducts;
 using Catalogo.Application.Products.SearchProducts;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -22,5 +23,14 @@ public class ProductController : ControllerBase
     var product = await _sender.Send(query);
 
     return Ok(product);
+  }
+
+  [HttpGet]
+  public async Task<IActionResult> GetAll()
+  {
+    var query = new AllProductQuery();
+    var products = await _sender.Send(query);
+
+    return Ok(products);
   }
 }
